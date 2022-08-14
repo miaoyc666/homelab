@@ -1,0 +1,83 @@
+log:
+  level: info
+
+include: []
+
+plugin:
+  - tag: server
+    type: server
+    args:
+      entry:
+        - mem_cache       # 启用缓存
+        - local_host
+        - main_sequence   # 逻辑
+      server:
+        - addr: 0.0.0.0:5454
+          protocol: udp
+  - tag: main_sequence
+    type: sequence
+    args:
+      exec:
+        - if:
+            - _qtype_AAAA           # 如果请求是 AAAA (ipv6) 类型
+          exec:
+            - _block_with_empty_response  # 生成空白应答
+            - _end
+        - if:
+            - query_is_local_domain   # 已知的本地域名
+            - '!_query_is_common'     # 和不常见的请求类型
+          exec:
+            - forward_local           # 用本地服务器
+            - _end
+        - if:
+            - query_is_non_local_domain  # 已知的非本地域名
+          exec:
+            - forward_clash             # 用远程服务器
+            - _end
+        - primary:
+            - forward_local
+            - if:
+                - '!response_has_local_ip'
+              exec:
+                - _drop_response
+          secondary:
+            - forward_clash
+          fast_fallback: 20  # 这里建议设置成 local 服务器正常延时的 2~5 倍。
+          always_standby: true
+  - tag: 'mem_cache'
+    type: 'cache'
+    args:
+      size: 1024
+  - tag: forward_local
+    type: forward
+    args:
+      upstream:
+        - addr: 192.168.88.254:53
+  - tag: forward_clash
+    type: forward
+    args:
+      upstream:
+        - addr: 192.168.88.1:55
+  - tag: query_is_local_domain
+    type: query_matcher
+    args:
+      domain:
+        - 'ext:/etc/mosdns/geosite.dat:cn'
+        - 'ext:/etc/mosdns/private'
+  - tag: local_host
+    type:  hosts
+    args:
+      hosts:
+        - ext:/etc/mosdns/hosts
+  - tag: query_is_non_local_domain
+    type: query_matcher
+    args:
+      domain:
+        - 'ext:/etc/mosdns/geosite.dat:geolocation-!cn'
+  - tag: response_has_local_ip
+    type: response_matcher
+    args:
+      ip:
+        - 'ext:/etc/mosdns/geoip.dat:cn'
+
+

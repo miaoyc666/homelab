@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosdns
+  labels:
+    app: mosdns
+spec:
+  selector:
+    matchLabels:
+      app: mosdns
+  template:
+    metadata:
+      labels:
+        app: mosdns
+    spec:
+      containers:
+      - name: mosdns
+        image: irinesistiana/mosdns:v2.2.2
+        ports:
+        - containerPort: 5454
+          protocol: UDP
+        env:
+        - name: TZ
+          value: "Asia/Shanghai"
+        volumeMounts:
+        - mountPath: "/etc/mosdns"
+          name: mosdns-conf-storage
+      hostNetwork: true
+      volumes:
+      - name: mosdns-conf-storage
+        hostPath:
+          path: "/homelab/mosdns"
