@@ -13,3 +13,5 @@ homelab配置文件集合
 
 ### 资源列表
 - mosdns运行所需geoip.dat和geosites.dat为v2ray的规则文件，[参考文档](https://github.com/Loyalsoldier/v2ray-rules-dat)
+- [mosdns下载](https://github.com/IrineSistiana/mosdns/releases)
+
