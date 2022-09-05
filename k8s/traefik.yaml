@@ -6,9 +6,9 @@ logs:
 
 env:
 - name: ALICLOUD_ACCESS_KEY
-  value: LTAI4GBywyXEVPKdv2HPdQ8A
+  value: xxx
 - name:  ALICLOUD_SECRET_KEY
-  value: Z6s19J7Q9Y0rCthFHBX5L8TJD9rUoI
+  value: xxx
 - name: TZ
   value: Asia/Shanghai
 
