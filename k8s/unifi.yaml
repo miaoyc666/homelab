@@ -1,0 +1,130 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: ingressroute-unifi-device
+  namespace: default
+spec:
+  entryPoints:
+    - unifi-device
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: unifi-service
+          port: 8080
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: ingressroute-unifi-unifidis-udp
+  namespace: default
+spec:
+  entryPoints:
+    - unifi-dis
+  routes:
+    - services:
+      - name: unifi-service
+        port: 10001
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: ingressroute-unifi-stun-udp
+  namespace: default
+spec:
+  entryPoints:
+    - unifi-stun
+  routes:
+    - services:
+      - name: unifi-service
+        port: 3478
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: ingressroute-unifi-https
+  namespace: default
+spec:
+  entryPoints:
+    - unifi-https
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: unifi-service
+          port: 8443
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: unifi-service
+spec:
+  ports:
+    - name: "3478"
+      port: 3478
+      protocol: UDP
+    - name: "10001"
+      port: 10001
+      protocol: UDP
+    - name: "8080"
+      port: 8080
+      protocol: TCP
+    - name: "8443"
+      port: 8443
+      protocol: TCP
+    - name: "8880"
+      port: 8880
+      protocol: TCP
+  selector:
+    app:  unifi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unifi
+  labels:
+    app: unifi
+spec:
+  selector:
+    matchLabels:
+      app: unifi
+  template:
+    metadata:
+      labels:
+        app: unifi
+    spec:
+      containers:
+      - name: unifi
+        image:  jacobalberty/unifi:v7
+        ports:
+          - containerPort: 3478
+            protocol: UDP
+          - containerPort: 10001
+            protocol: UDP
+          - containerPort: 8080
+          - containerPort: 8443
+          - containerPort: 1900
+            protocol: UDP
+          - containerPort: 8843
+          - containerPort: 8880
+          - containerPort: 6789
+          - containerPort: 5514
+            protocol: UDP
+        env:
+        - name: TZ
+          value: "Asia/Shanghai"
+        - name: DB_URI
+          value: mongodb://mongo-service/unifi
+        - name: STATDB_URI
+          value: mongodb://mongo-service/unifi_stat
+        - name: DB_NAME
+          value: unifi
+        volumeMounts:
+        - mountPath: "/unifi"
+          name: unifi-storage
+      volumes:
+      - name: unifi-storage
+        hostPath:
+          path: "/homelab/unifi"
+

@@ -1,0 +1,55 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: ingressroute-xteve-tcp
+  namespace: default
+spec:
+  entryPoints:
+    - xteve
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: xteve-service
+          port: 34400
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: xteve-service
+spec:
+  ports:
+    - port: 34400
+      protocol: TCP
+  selector:
+    app:  xteve
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xteve
+  labels:
+    app: xteve
+spec:
+  selector:
+    matchLabels:
+      app: xteve
+  template:
+    metadata:
+      labels:
+        app: xteve
+    spec:
+      containers:
+      - name: xteve
+        image: dnsforge/xteve
+        ports:
+        - containerPort: 34400
+        volumeMounts:
+        - mountPath: "/home/xteve/conf"
+          name: xteve-conf-storage
+      volumes:
+      - name: xteve-conf-storage
+        hostPath:
+          path: "/homelab/xteve/conf"
+

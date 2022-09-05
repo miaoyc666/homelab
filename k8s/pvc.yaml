@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: traefik-storage
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: "/opt/traefik"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-traefik
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+

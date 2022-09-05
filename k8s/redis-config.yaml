@@ -1,0 +1,15 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: redis-config
+  labels:
+    app: redis
+data:
+  redis.conf: |-
+    dir /homelab/redis
+    port 6379
+    appendonly yes
+    daemonize no
+    requirepass test123
+    pidfile /homelab/redis/redis-6379.pid

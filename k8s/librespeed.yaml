@@ -1,0 +1,49 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroute-notls
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`speedtest.myc.ink`)
+      kind: Rule
+      services:
+        - name: librespeed-service
+          port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: librespeed-service
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app:  librespeed
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: librespeed
+  labels:
+    app: librespeed
+spec:
+  selector:
+    matchLabels:
+      app: librespeed
+  template:
+    metadata:
+      labels:
+        app: librespeed
+    spec:
+      containers:
+      - name: librespeed
+        image: adolfintel/speedtest
+        env:
+        - name: MODE
+          value: standalone
+        ports:
+        - containerPort: 80

@@ -1,0 +1,102 @@
+logs:
+  general:
+    level: INFO
+  access:
+    enabled: true
+
+env:
+- name: ALICLOUD_ACCESS_KEY
+  value: LTAI4GBywyXEVPKdv2HPdQ8A
+- name:  ALICLOUD_SECRET_KEY
+  value: Z6s19J7Q9Y0rCthFHBX5L8TJD9rUoI
+- name: TZ
+  value: Asia/Shanghai
+
+ports:
+  redis:
+    port: 6379
+    expose: true
+    exposedPort: 6379
+    protocol: TCP
+  mongo:
+    port: 27017
+    expose: true
+    exposedPort: 27017
+    protocol: TCP
+  unifi-stun:
+    port: 3478
+    expose: true
+    exposedPort: 3478
+    protocol: UDP
+  websecure:
+    port: 5102
+    expose: true
+    exposedPort: 5102
+    protocol: TCP
+  unifi-device:
+    port: 8080
+    expose: true
+    exposedPort: 8080
+    protocol: TCP
+  traefik:
+    port: 8081
+    expose: true
+    exposedPort: 8081
+    protocol: TCP
+  unifi-https:
+    port: 8443
+    expose: true
+    exposedPort: 8443
+    protocol: TCP
+  emby:
+    port: 8096
+    expose: true
+    exposedPort: 8096
+    protocol: TCP
+  xteve:
+    port: 34400
+    expose: true
+    exposedPort: 34400
+    protocol: TCP
+  hass:
+    port: 8123
+    expose: true
+    exposedPort: 8123
+    protocol: TCP
+  mysql:
+    port: 3306
+    expose: true
+    exposedPort: 3306
+    protocol: TCP
+  unifi-dis:
+    port: 10001
+    expose: true
+    exposedPort: 10001
+    protocol: UDP
+ 
+persistence:
+  enabled: true
+  name: data
+  existingClaim: "pvc-traefik"
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  storageClass: "manual"
+  path: /data
+  annotations: {}
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsGroup: 0
+  runAsUser: 0
+  runAsNonRoot: false
+
+
+additionalArguments:
+- "--accesslog.fields.names.StartUTC=drop"
+- "--certificatesresolvers.myc.acme.dnschallenge.provider=alidns"
+- "--certificatesresolvers.myc.acme.storage=/data/acme.json"
+- "--certificatesResolvers.myc.acme.email=miaoyc1989@hotmail.com"
+- "--providers.file.filename=/data/service.toml"
+- "--api.insecure=true"
+- "--api.dashboard=true"
+

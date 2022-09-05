@@ -1,0 +1,62 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroute-heimdall
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`192.168.88.1`)
+      kind: Rule
+      services:
+        - name: heimdall-service
+          port: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: heimdall-service
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app:  heimdall
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heimdall
+  labels:
+    app: heimdall
+spec:
+  selector:
+    matchLabels:
+      app: heimdall
+  template:
+    metadata:
+      labels:
+        app: heimdall
+    spec:
+      containers:
+      - name: heimdall
+        image: linuxserver/heimdall
+        ports:
+        - containerPort: 80
+        env:
+        - name: PUID
+          value: "1000"
+        - name:  PGID
+          value: "1000"
+        - name: TZ
+          value: "Asia/Shanghai"
+        volumeMounts:
+        - mountPath: "/config"
+          name: heimdall-conf-storage
+      volumes:
+      - name: heimdall-conf-storage
+        hostPath:
+          path: "/homelab/heimdall/conf"

@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clash
+  labels:
+    app: clash
+spec:
+  selector:
+    matchLabels:
+      app: clash
+  template:
+    metadata:
+      labels:
+        app: clash
+    spec:
+      containers:
+      - name: clash
+        image:  dreamacro/clash-premium:latest
+        ports:
+        - containerPort: 9093
+        - containerPort: 55
+          protocol: UDP
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+            - NET_ADMIN
+        volumeMounts:
+        - mountPath: "/root/.config/clash"
+          name: clash-storage
+        - mountPath: /dev/net/tun
+          name: dev-net-tun
+          readOnly: true
+      hostNetwork: true
+      volumes:
+      - name: clash-storage
+        hostPath:
+          path: "/homelab/clash"
+      - name: dev-net-tun
+        hostPath:
+          path: "/dev/net/tun"
