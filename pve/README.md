@@ -13,3 +13,5 @@
 4.qm stop 假死虚拟机id
 ```
 
+#### pve安装windows客户机最佳实践
+[Windows_10_guest_best_practices](https://pve.proxmox.com/wiki/Windows_10_guest_best_practices)
