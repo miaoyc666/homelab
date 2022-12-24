@@ -33,4 +33,7 @@ homelab配置文件集合
 - 安装方式：`yum install privoxy`
 - 配置：[privoxy.service](./privoxy/privoxy.service), [config](./privoxy/config)
 
+### emby
+[emby]()
+
 
