@@ -27,6 +27,11 @@ homelab配置文件集合
 - 物料：[v2ray github](https://github.com/v2fly/v2ray-core)
 - 安装方式：`download and copy install`
 - 配置：[v2ray.service](./v2ray/v2ray.service), [config.json](./v2ray/config.json)
+
+#### 3.privoxy
+- 物料：[privoxy](https://www.privoxy.org/sf-download-mirror/)
+- 安装方式：`yum install privoxy`
+- 配置：[privoxy.service](./privoxy/privoxy.service), [config](./privoxy/config)
 ```bash
 cat > /etc/systemd/system/privoxy.service <<EOF
 [Unit]
@@ -41,13 +46,8 @@ ExecStart=/usr/sbin/privoxy --pidfile /run/privoxy.pid --user privoxy /etc/privo
 
 [Install]
 WantedBy=multi-user.target
-EOF
+EOF 
 ```
-
-#### 3.privoxy
-- 物料：[privoxy](https://www.privoxy.org/sf-download-mirror/)
-- 安装方式：`yum install privoxy`
-- 配置：[privoxy.service](./privoxy/privoxy.service), [config](./privoxy/config)
 
 ### emby
 [emby]()
