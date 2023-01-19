@@ -18,10 +18,8 @@ apt-get install nfs-common -y
 #### 安装helm
 拷贝二进制文件即可，下载目录：https://github.com/helm/helm/releases/
 
-#### helm配置源
+#### helm配置源启动traefik
 1. helm repo add traefik https://helm.traefik.io/traefik
-2. helm repo update
-
-#### 启动traefik
-1. kubectl apply -f pvc.yaml 
-2. helm install traefik -f traefik.yaml traefik/traefik
+2. helm repo update 
+3. kubectl apply -f pvc.yaml 
+4. helm install traefik -f traefik.yaml traefik/traefik
