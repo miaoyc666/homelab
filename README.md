@@ -32,5 +32,24 @@ homelab配置文件集合
 - 物料：[privoxy](https://www.privoxy.org/sf-download-mirror/)
 - 安装方式：`yum install privoxy`
 - 配置：[privoxy.service](./privoxy/privoxy.service), [config](./privoxy/config)
+```bash
+cat > /etc/systemd/system/privoxy.service <<EOF
+[Unit]
+Description=Privoxy Web Proxy With Advanced Filtering Capabilities
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/run/privoxy.pid
+ExecStart=/usr/sbin/privoxy --pidfile /run/privoxy.pid --user privoxy /etc/privoxy/config
+
+[Install]
+WantedBy=multi-user.target
+EOF 
+```
+
+### emby
+[emby]()
 
 
