@@ -15,6 +15,9 @@
 apt-get install nfs-common -y
 ```
 
+#### emby暴露端口
+`kubectl port-forward $(kubectl get pods  --output=name | grep emby) 8096:8096 --address=192.168.88.110`
+
 #### 安装helm
 拷贝二进制文件即可，下载目录：https://github.com/helm/helm/releases/
 
