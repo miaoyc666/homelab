@@ -1,0 +1,19 @@
+version: "2.1"
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - TRANSMISSION_WEB_HOME=/combustion-release/
+    volumes:
+      - /share/ptdownload/transmission:/config
+      - /share/ptdownload:/downloads
+      - /share/ptdownload/torrent:/watchpwd
+    ports:
+      - 9291:9091
+      - 52413:51413
+      - 52413:51413/udp
+    restart: unless-stopped
