@@ -32,6 +32,7 @@ homelab配置文件集合
 - 物料：[privoxy](https://www.privoxy.org/sf-download-mirror/)
 - 安装方式：`yum or apt install privoxy`
 - 配置：[privoxy.service](./privoxy/privoxy.service), [config](./privoxy/config)
+- 添加密码：死了这条心吧，privoxy不能添加密码
 
 ### emby
 [emby]()
