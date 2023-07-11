@@ -1,5 +1,5 @@
 # homelab
-homelab配置文件集合
+homelab应用合集
 
 ### What is this?
 - 本项目包含智能家居内的各种服务和配置
@@ -7,7 +7,7 @@ homelab配置文件集合
 - 版权所有：miaoyc
 
 ### 版本对应说明
-- mosdns: v2.2.2
+- mosdns: v2.2.2(native) or v5.1.3(docker)
 - v2ray: v4.43
 - privoxy: 3.0.32
 
@@ -21,6 +21,8 @@ homelab配置文件集合
 - /etc/systemd/system/clash.service  
 
 ### 安装资料索引
+#### 0.clash
+
 #### 1. mosdns
 
 #### 2.v2ray
@@ -35,6 +37,7 @@ homelab配置文件集合
 - 添加密码：死了这条心吧，privoxy不能添加密码
 
 ### emby
-[emby]()
+[emby]
+
 
 

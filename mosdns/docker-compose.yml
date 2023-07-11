@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  server:
+    container_name: modns
+    image: irinesistiana/mosdns:v5.1.3
+    restart: always
+    volumes:
+      - ./config:/etc/mosdns
+    network_mode: host
