@@ -21,23 +21,32 @@ homelab应用合集
 - /etc/systemd/system/clash.service  
 
 ### 安装资料索引
-#### 0.clash
+#### 1.Clash Premium
+- [物料下载地址](https://github.com/Dreamacro/clash/releases/tag/premium) 
+- [clash ui yacd](clash/yacd.tar.xz)
+- [可用配置信息示例](clash)
+```bash 
+wget https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-2023.06.30.gz
+```
 
-#### 1. mosdns
+#### 2. mosdns
+- [物料下载地址](https://github.com/IrineSistiana/mosdns/releases)
+- [可用配置信息示例](mosdns)
 
-#### 2.v2ray
+#### 3.v2ray
 - 物料：[v2ray github](https://github.com/v2fly/v2ray-core)
 - 安装方式：`download and copy install`
 - 配置：[v2ray.service](./v2ray/v2ray.service), [config.json](./v2ray/config.json)
 
-#### 3.privoxy
+#### 4.privoxy
 - 物料：[privoxy](https://www.privoxy.org/sf-download-mirror/)
 - 安装方式：`yum or apt install privoxy`
 - 配置：[privoxy.service](./privoxy/privoxy.service), [config](./privoxy/config)
 - 添加密码：死了这条心吧，privoxy不能添加密码
 
-### emby
-[emby]
+#### 5.emby
+[emby](emby)
+
 
 
 

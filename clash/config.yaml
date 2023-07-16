@@ -149,7 +149,7 @@ dns:
       - "+.githubusercontent.com"
       - "+.googlevideo.com"
 proxies:
-  - name: "proxy"
+  - name: "us USDMIT"
     server: xx.xx.xx
     port: 443
     type: vmess
@@ -279,7 +279,6 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
     path: ./RuleSet/lancidr.yaml
     interval: 86400
-
 
 rules:
   - RULE-SET,Lancidr,DIRECT
