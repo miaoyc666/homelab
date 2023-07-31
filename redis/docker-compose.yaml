@@ -4,8 +4,6 @@ services:
     image: redis:7.0
     ports:
       - 6379:6379
-    environment:
-      - REDIS_PASSWORD=admin123!
-    command: ["redis-server", "--appendonly", "yes"]
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "admin123!"]
     volumes:
       - ./data:/data
