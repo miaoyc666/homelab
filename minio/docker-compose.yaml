@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  minio:
+    image: minio/minio:RELEASE.2023-08-16T20-17-30Z
+    container_name: miaoyc_minio
+    restart: always
+    volumes:
+      - minio_data:/data
+      - minio_config:/root/.minio
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    environment:
+      MINIO_ROOT_USER: "xxxxxuser"
+      MINIO_ROOT_PASSWORD: "xxxxxpassword"
+    entrypoint: sh
+    command: -c 'mkdir -p /data/test && minio server /data --console-address ":8000"'
+
+volumes:
+  minio_data:
+    name: minio_data
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/lighthouse/apps/minio/minio_data"
+      o: bind
+  minio_config:
+    name: minio_config
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/lighthouse/apps/minio/minio_config"
+      o: bind
