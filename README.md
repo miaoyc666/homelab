@@ -25,6 +25,7 @@ homelab应用合集
 - [物料下载地址](https://github.com/Dreamacro/clash/releases/tag/premium) 
 - [clash ui yacd](clash/yacd.tar.xz)
 - [可用配置信息示例](clash)
+- [规则配置参考](https://github.com/Loyalsoldier/clash-rules)
 
 #### 2. mosdns
 - [物料下载地址](https://github.com/IrineSistiana/mosdns/releases)
