@@ -210,73 +210,73 @@ rule-providers:
   Direct:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    url: https://myc.ink/clash-rules/direct.txt
     path: ./RuleSet/direct.yaml
     interval: 86400
   Icloud:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    url: https://myc.ink/clash-rules/icloud.txt
     path: ./RuleSet/icloud.yaml
     interval: 86400
   Apple:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    url: https://myc.ink/clash-rules/apple.txt
     path: ./RuleSet/apple.yaml
     interval: 86400
   NETFLIX:
     type: http
     behavior: classical
     path: ./RuleSet/netflix.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/StreamingMedia/Video/Netflix.yaml
+    url: https://myc.ink/clash-rules/Netflix.yaml
     interval: 86400
   HBO:
     type: http
     behavior: classical
     path: ./RuleSet/hbo.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/StreamingMedia/Video/HBO.yaml
+    url: https://myc.ink/clash-rules/HBO.yaml
   YouTube:
     type: http
     behavior: classical
     path: ./RuleSet/youtube.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/StreamingMedia/Video/YouTube.yaml
+    url: https://myc.ink/clash-rules/YouTube.yaml
   GoogleSearch:
     type: http
     behavior: classical
     path: ./RuleSet/googlesearch.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/Extra/Google/GoogleSearch.yaml
+    url: https://myc.ink/clash-rules/GoogleSearch.yaml
   GoogleDrive:
     type: http
     behavior: classical
     path: ./RuleSet/googledrive.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/Extra/Google/GoogleDrive.yaml
+    url: https://myc.ink/clash-rules/GoogleDrive.yaml
   TelegramUS:
     type: http
     behavior: classical
     path: ./RuleSet/telegramus.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/Extra/Telegram/TelegramUS.yaml
+    url: https://myc.ink/clash-rules/TelegramUS.yaml
   Global:
     type: http
     behavior: classical
     path: ./RuleSet/global.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/Global.yaml
+    url: https://myc.ink/clash-rules/Global.yaml
   Unbreak:
     type: http
     behavior: classical
     path: ./RuleSet/Unbreak.yaml
-    url: https://cdn.jsdelivr.net/gh/DivineEngine/Profiles@master/Clash/RuleSet/Unbreak.yaml
+    url: https://myc.ink/clash-rules/Unbreak.yaml
     interval: 86400
   ChinaIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    url: https://myc.ink/clash-rules/cncidr.txt
     path: ./RuleSet/cncidr.yaml
     interval: 86400
   Lancidr:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    url: https://myc.ink/clash-rules/lancidr.txt
     path: ./RuleSet/lancidr.yaml
     interval: 86400
 
