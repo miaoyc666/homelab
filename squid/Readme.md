@@ -13,7 +13,7 @@ https://github.com/miaoyc666/squid-https
 ```
 
 ### acme.sh生成证书
-```bas
+```bash
 # 常用的Let's Encrypt 证书生成工具有 certbot、acme.sh、acme-tiny，这里介绍的是acme.sh
 
 dnf install socat -y
