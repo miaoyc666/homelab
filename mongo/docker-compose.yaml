@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: mongo5
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/db/mongo5:/data/db
+      - /var/log/mongo5:/var/log/mongodb
+    environment:
+      TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: feb7069459c2ef12cf562998898c46d2
+    mem_limit: 8g
+    cpus: 4

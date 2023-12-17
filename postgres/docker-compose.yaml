@@ -1,0 +1,14 @@
+version: '3'
+services:
+  db:
+    image: postgres:10.6
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: de5d7ccfb8fc7f3661bd82c955f23566
+      POSTGRES_MAX_CONNECTIONS: 500
+    volumes:
+      - /data/db/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    mem_limit: 8g
+    cpus: 4
