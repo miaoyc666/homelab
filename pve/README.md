@@ -15,3 +15,13 @@
 
 #### pve安装windows客户机最佳实践
 [Windows_10_guest_best_practices](https://pve.proxmox.com/wiki/Windows_10_guest_best_practices)
+
+#### 导出虚拟机模板
+```bash
+# 先获取虚拟机列表，找到想要导出的虚拟机的vmid
+qm list
+# 导出模板
+vzdump <vmid>  --dumpdir <directory> --compress gzip
+# 在新的PVE服务器上，使用以下命令导入模板
+qmrestore <path-to-vma.gz-file> <new-vmid>
+```
