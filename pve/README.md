@@ -14,7 +14,7 @@
 ```
 
 #### pve安装windows客户机最佳实践
-[Windows_10_guest_best_practices](https://pve.proxmox.com/wiki/Windows_10_guest_best_practices)
+- [Windows_10_guest_best_practices](https://pve.proxmox.com/wiki/Windows_10_guest_best_practices)
 
 #### 导出虚拟机模板
 ```bash
