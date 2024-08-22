@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:15.11.6-ce.0'
+    restart: always
+    hostname: 'xx.xx.xx'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['gitlab_sign_up_enabled'] = true
+        gitlab_rails['initial_root_password'] = 'xxx_12345'
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - '1022:22'
+      - '10443:443'
+      - '1080:80'
+    volumes:
+      - '/data/gitlab/config:/etc/gitlab'
+      - '/data/gitlab/logs:/var/log/gitlab'
+      - '/data/gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
