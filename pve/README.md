@@ -25,3 +25,9 @@ vzdump <vmid>  --dumpdir <directory> --compress gzip
 # 在新的PVE服务器上，使用以下命令导入模板
 qmrestore <path-to-vma.gz-file> <new-vmid>
 ```
+
+#### 查看&导入本地镜像
+```bash
+ls /var/lib/vz/template/iso
+cp xx.iso /var/lib/vz/template/iso
+```
