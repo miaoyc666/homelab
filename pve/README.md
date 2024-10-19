@@ -31,3 +31,20 @@ qmrestore <path-to-vma.gz-file> <new-vmid>
 ls /var/lib/vz/template/iso
 cp xx.iso /var/lib/vz/template/iso
 ```
+
+#### 集群拆分
+```bash
+# 1
+pvecm nodes
+pvecm delnode <node-name>
+
+# 2
+systemctl stop pvedaemon pve-cluster
+rm /etc/pve/corosync.conf
+rm -rf /var/lib/corosync/*
+rm -rf /etc/pve/ha/
+systemctl restart pvedaemon pve-cluster
+systemctl stop corosync
+rm /etc/corosync/corosync.conf
+systemctl restart corosync
+```
