@@ -34,17 +34,22 @@ cp xx.iso /var/lib/vz/template/iso
 
 #### 集群拆分
 ```bash
-# 1
+# 1 删除节点
 pvecm nodes
 pvecm delnode <node-name>
 
-# 2
-systemctl stop pvedaemon pve-cluster
-rm /etc/pve/corosync.conf
-rm -rf /var/lib/corosync/*
+# 2 暴力拆分
+systemctl stop pvedaemon 
+systemctl stop pve-cluster 
+systemctl stop corosync 
+systemctl disable corosync 
+systemctl disable pve-cluster 
+rm -rf /var/lib/corosync
+rm -rf /var/lib/pve-cluster
 rm -rf /etc/pve/ha/
-systemctl restart pvedaemon pve-cluster
-systemctl stop corosync
-rm /etc/corosync/corosync.conf
-systemctl restart corosync
+rm -rf /etc/pve/.members
+rm -f /etc/pve/corosync.conf
+rm -f /etc/corosync/corosync.conf
+systemctl restart pvedaemon
+systemctl restart pveproxy
 ```
