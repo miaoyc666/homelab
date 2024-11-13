@@ -24,7 +24,8 @@ homelab应用合集
 #### 1.Clash Premium
 - [物料下载地址](https://github.com/zhongfly/Clash-premium-backup) 
 - [clash ui yacd](clash/yacd.tar.xz)
-- [可用配置信息示例](clash)
+- [可用物料](clash)
+- [配置模板](https://gist.github.com/mcxiaoke/d41b9f6aefe15002b38b95c96c60ffc0)
 - [规则配置参考](https://github.com/Loyalsoldier/clash-rules)
 
 #### 2. mosdns

@@ -148,161 +148,159 @@ dns:
       - "+.youtube.com"
       - "+.githubusercontent.com"
       - "+.googlevideo.com"
+
 proxies:
-  - name: "us USDMIT"
-    server: xx.xx.xx
-    port: 443
+  - name: us
     type: vmess
-    uuid: xx.xx.xx
+    server: xx.xx.xx.xx
+    port: 443
+    uuid: 83333333-3333-3333-3333-333333333333
     alterId: 64
     cipher: auto
+    udp: true
     tls: true
-    network: h2
-    h2-opts:
-      host:
-        - xx.xx.xx
-      path: /watches
-    
+    network: ws
+    servername: xx.xx.xx.xx
+    ws-opts:
+      path: "/"
+      headers:
+        Host: xx.xx.xx.xx
+
 proxy-groups:
   - name: 所有节点
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 500
     proxies:
-      - us USDMIT
-  - name: ♻️ 自动选择
+      - us
+  - name: 自动选择
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - us USDMIT
-  - name: � 节点选择
+      - us
+  - name: 节点选择
     type: select
     proxies:
-      - us USDMIT
-      - � 全球直连
-  - name: � YouTube
-    type: select
-    proxies:
-      - us USDMIT
-      - � 全球直连
-  - name: � Netflix
-    type: select
-    proxies:
-      - us USDMIT
-      - � 全球直连
-  - name: � 国外媒体
-    type: select
-    proxies:
-      - � 节点选择
-      - � 全球直连
-  - name: � 全球直连
+      - us
+      - DIRECT
+  - name: 全球直连
     type: select
     proxies:
       - DIRECT
-  - name: � 漏网之鱼
+  - name: PROXY
     type: select
     proxies:
-      - us USDMIT
-      - � 全球直连
+      - us
 
 rule-providers:
-  Direct:
+  reject:
     type: http
     behavior: domain
-    url: https://myc.ink/clash-rules/direct.txt
-    path: ./RuleSet/direct.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
     interval: 86400
-  Icloud:
+
+  icloud:
     type: http
     behavior: domain
-    url: https://myc.ink/clash-rules/icloud.txt
-    path: ./RuleSet/icloud.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
     interval: 86400
-  Apple:
+
+  apple:
     type: http
     behavior: domain
-    url: https://myc.ink/clash-rules/apple.txt
-    path: ./RuleSet/apple.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
     interval: 86400
-  NETFLIX:
+
+  google:
     type: http
-    behavior: classical
-    path: ./RuleSet/netflix.yaml
-    url: https://myc.ink/clash-rules/Netflix.yaml
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./ruleset/google.yaml
     interval: 86400
-  HBO:
+
+  proxy:
     type: http
-    behavior: classical
-    path: ./RuleSet/hbo.yaml
-    url: https://myc.ink/clash-rules/HBO.yaml
-  YouTube:
-    type: http
-    behavior: classical
-    path: ./RuleSet/youtube.yaml
-    url: https://myc.ink/clash-rules/YouTube.yaml
-  GoogleSearch:
-    type: http
-    behavior: classical
-    path: ./RuleSet/googlesearch.yaml
-    url: https://myc.ink/clash-rules/GoogleSearch.yaml
-  GoogleDrive:
-    type: http
-    behavior: classical
-    path: ./RuleSet/googledrive.yaml
-    url: https://myc.ink/clash-rules/GoogleDrive.yaml
-  TelegramUS:
-    type: http
-    behavior: classical
-    path: ./RuleSet/telegramus.yaml
-    url: https://myc.ink/clash-rules/TelegramUS.yaml
-  Global:
-    type: http
-    behavior: classical
-    path: ./RuleSet/global.yaml
-    url: https://myc.ink/clash-rules/Global.yaml
-  Unbreak:
-    type: http
-    behavior: classical
-    path: ./RuleSet/Unbreak.yaml
-    url: https://myc.ink/clash-rules/Unbreak.yaml
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
     interval: 86400
-  ChinaIP:
+
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+
+  tld-not-cn:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+    path: ./ruleset/tld-not-cn.yaml
+    interval: 86400
+
+  telegramcidr:
     type: http
     behavior: ipcidr
-    url: https://myc.ink/clash-rules/cncidr.txt
-    path: ./RuleSet/cncidr.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
     interval: 86400
-  Lancidr:
+
+  cncidr:
     type: http
     behavior: ipcidr
-    url: https://myc.ink/clash-rules/lancidr.txt
-    path: ./RuleSet/lancidr.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./ruleset/applications.yaml
     interval: 86400
 
 rules:
-  - RULE-SET,Lancidr,DIRECT
-  - RULE-SET,ChinaIP,DIRECT
-  - RULE-SET,Direct,DIRECT
-  - RULE-SET,Unbreak,DIRECT
-  - DOMAIN-SUFFIX,hearken.me,DIRECT
-  - RULE-SET,Icloud,DIRECT
-  - RULE-SET,Apple,DIRECT
-  - RULE-SET,NETFLIX,� Netflix
-  - RULE-SET,HBO,� 国外媒体
-  - RULE-SET,YouTube,� YouTube
-  - RULE-SET,GoogleSearch,� 国外媒体
-  - RULE-SET,GoogleDrive,� 国外媒体
-  - RULE-SET,TelegramUS,� 国外媒体
-  - DOMAIN-SUFFIX,inoreader.com,� 国外媒体
-  - DOMAIN-SUFFIX,readthedocs.io,� 国外媒体
-  - DOMAIN-SUFFIX,v2ex.com,� 国外媒体
-  - DOMAIN-SUFFIX,ghcr.io,� 国外媒体
-  - DOMAIN-SUFFIX,v2fly.org,� 国外媒体
-  - DOMAIN-SUFFIX,golang.org,� 国外媒体
-  - DOMAIN-SUFFIX,gitbooks.io,� 国外媒体
-  - DOMAIN-SUFFIX,github.com,� 国外媒体
-  - DOMAIN-SUFFIX,gopkg.in,� 国外媒体
-  - DOMAIN-KEYWORD,speedtest,DIRECT
-  - RULE-SET,Global,� 国外媒体
-  - MATCH,� 漏网之鱼
+  - DOMAIN-SUFFIX,g.cn,PROXY
+  - DOMAIN-SUFFIX,google.cn,PROXY
+  - RULE-SET,applications,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,private,DIRECT
+  - RULE-SET,reject,REJECT
+  - RULE-SET,icloud,DIRECT
+  - RULE-SET,apple,DIRECT
+  - RULE-SET,google,PROXY
+  - RULE-SET,proxy,PROXY
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - RULE-SET,telegramcidr,PROXY
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,PROXY
