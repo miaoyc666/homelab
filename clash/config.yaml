@@ -184,10 +184,6 @@ proxy-groups:
     proxies:
       - us
       - DIRECT
-  - name: 全球直连
-    type: select
-    proxies:
-      - DIRECT
   - name: PROXY
     type: select
     proxies:
