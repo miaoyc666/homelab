@@ -134,12 +134,12 @@ plugins:
     type: udp_server
     args:
       entry: main_sequence
-      listen: :5454
+      listen: :53
 
   # 启动 tcp 服务器。
   - tag: tcp_server
     type: tcp_server
     args:
       entry: main_sequence
-      listen: :5454
+      listen: :53
 
