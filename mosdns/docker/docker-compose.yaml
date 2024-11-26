@@ -8,4 +8,5 @@ services:
     volumes:
       - ./etc:/etc/mosdns
       - ./log:/var/log
+      - ./run:/var/run
     restart: always

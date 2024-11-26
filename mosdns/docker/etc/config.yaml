@@ -1,6 +1,6 @@
 log:
   level: warn
-  file: "/etc/mosdns/mosdns.log"
+  file: "/var/log/mosdns.log"
 
 # API 入口设置
 api:
@@ -36,7 +36,7 @@ plugins:
     args:
       size: 20480
       lazy_cache_ttl: 86400
-      dump_file: "/etc/mosdns/cache.dump"
+      dump_file: "/var/run/cache.dump"
       dump_interval: 600
 
   # 转发至本地服务器
@@ -142,4 +142,3 @@ plugins:
     args:
       entry: main_sequence
       listen: :53
-
