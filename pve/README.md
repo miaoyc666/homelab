@@ -5,6 +5,7 @@
 ```bash
 qm list
 pct list
+qm unlock <VM_ID>
 ```
 
 
