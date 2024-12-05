@@ -4,7 +4,7 @@
 #### query
 ```bash
 qm list
-qct list
+pct list
 ```
 
 
