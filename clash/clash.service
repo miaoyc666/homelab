@@ -5,7 +5,7 @@ After=network-online.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/local/bin/clash -d /etc/clash
+ExecStart=/opt/clash/clash -d /opt/clash/etc
 
 [Install]
 WantedBy=multi-user.target
