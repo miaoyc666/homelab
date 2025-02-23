@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  mihomo:
+    image: metacubex/mihomo
+    container_name: mihomo
+    networks:
+      macvlan:
+        ipv4_address: 192.168.88.62
+    volumes:
+      - /root/disk1/mihomo:/root/.config/mihomo/
+    privileged: true
+#    devices:
+#      - /dev/net/tun
+    restart: always
+#    cap_add:
+#      - NET_ADMIN
+    sysctls:
+      - net.ipv4.ip_forward=1
+
+  adguardHome:
+    image: adguard/adguardhome
+    container_name: adguardHome
+    networks:
+      macvlan:
+        ipv4_address: 192.168.88.61
+    volumes:
+      - /root/disk1/adguardhome/conf:/opt/adguardhome/conf
+      - /root/disk1/adguardhome/work:/opt/adguardhome/work
+    privileged: true
+    restart: always
+
+  mosdns:
+    image: irinesistiana/mosdns:latest
+    container_name: mosdns
+    networks:
+      macvlan:
+        ipv4_address: 192.168.88.60
+    volumes:
+      - /root/disk1/mosdns/etc/mosdns:/etc/mosdns
+      - /root/disk1/mosdns/var/mosdns:/var/mosdns
+    privileged: true
+    restart: always
+
+networks:
+  macvlan:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+      macvlan_mode: bridge
+    ipam:
+      config:
+        - subnet: 192.168.88.0/24
+          gateway: 192.168.88.1
