@@ -6,7 +6,7 @@ services:
     container_name: mihomo
     networks:
       macvlan:
-        ipv4_address: 192.168.88.62
+        ipv4_address: 192.168.88.8
     volumes:
       - /root/disk1/mihomo:/root/.config/mihomo/
     privileged: true
@@ -23,7 +23,7 @@ services:
     container_name: adguardHome
     networks:
       macvlan:
-        ipv4_address: 192.168.88.61
+        ipv4_address: 192.168.88.9
     volumes:
       - /root/disk1/adguardhome/conf:/opt/adguardhome/conf
       - /root/disk1/adguardhome/work:/opt/adguardhome/work
@@ -35,7 +35,7 @@ services:
     container_name: mosdns
     networks:
       macvlan:
-        ipv4_address: 192.168.88.60
+        ipv4_address: 192.168.88.10
     volumes:
       - /root/disk1/mosdns/etc/mosdns:/etc/mosdns
       - /root/disk1/mosdns/var/mosdns:/var/mosdns
