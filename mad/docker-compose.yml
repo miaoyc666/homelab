@@ -1,14 +1,16 @@
-version: '3'
-
 services:
   mihomo:
     image: metacubex/mihomo
     container_name: mihomo
     networks:
       macvlan:
-        ipv4_address: 192.168.88.50
+        ipv4_address: 192.168.88.8
     volumes:
-      - /opt/mad/mihomo:/root/.config/mihomo/
+      - /root/disk1/mihomo:/root/.config/mihomo/
+      - /etc/localtime:/etc/localtime:ro  # 挂载宿主机时区文件
+      - /etc/timezone:/etc/timezone:ro    # 挂载时区配置
+    environment:
+      - TZ=Asia/Shanghai                  # 显式设置时区
     privileged: true
     restart: always
     sysctls:
@@ -19,10 +21,14 @@ services:
     container_name: adguardHome
     networks:
       macvlan:
-        ipv4_address: 192.168.88.51
+        ipv4_address: 192.168.88.9
     volumes:
-      - /opt/mad/adguardhome/conf:/opt/adguardhome/conf
-      - /opt/mad/adguardhome/work:/opt/adguardhome/work
+      - /root/disk1/adguardhome/conf:/opt/adguardhome/conf
+      - /root/disk1/adguardhome/work:/opt/adguardhome/work
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - TZ=Asia/Shanghai
     privileged: true
     restart: always
 
@@ -31,10 +37,14 @@ services:
     container_name: mosdns
     networks:
       macvlan:
-        ipv4_address: 192.168.88.52
+        ipv4_address: 192.168.88.10
     volumes:
-      - /opt/mad/mosdns/etc/mosdns:/etc/mosdns
-      - /opt/mad/mosdns/var/mosdns:/var/mosdns
+      - /root/disk1/mosdns/etc/mosdns:/etc/mosdns
+      - /root/disk1/mosdns/var/mosdns:/var/mosdns
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - TZ=Asia/Shanghai
     privileged: true
     restart: always
 
@@ -47,4 +57,4 @@ networks:
     ipam:
       config:
         - subnet: 192.168.88.0/24
-          gateway: 192.168.88.1
+          gateway: 192.168.88.254
