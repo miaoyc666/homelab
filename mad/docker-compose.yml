@@ -6,7 +6,7 @@ services:
       macvlan:
         ipv4_address: 192.168.88.8
     volumes:
-      - /root/disk1/mihomo:/root/.config/mihomo/
+      - /root/mad/mihomo:/root/.config/mihomo/
       - /etc/localtime:/etc/localtime:ro  # 挂载宿主机时区文件
       - /etc/timezone:/etc/timezone:ro    # 挂载时区配置
     environment:
@@ -23,8 +23,8 @@ services:
       macvlan:
         ipv4_address: 192.168.88.9
     volumes:
-      - /root/disk1/adguardhome/conf:/opt/adguardhome/conf
-      - /root/disk1/adguardhome/work:/opt/adguardhome/work
+      - /root/mad/adguardhome/conf:/opt/adguardhome/conf
+      - /root/mad/adguardhome/work:/opt/adguardhome/work
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
@@ -39,8 +39,8 @@ services:
       macvlan:
         ipv4_address: 192.168.88.10
     volumes:
-      - /root/disk1/mosdns/etc/mosdns:/etc/mosdns
-      - /root/disk1/mosdns/var/mosdns:/var/mosdns
+      - /root/mad/mosdns/etc/mosdns:/etc/mosdns
+      - /root/mad/mosdns/var/mosdns:/var/mosdns
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
