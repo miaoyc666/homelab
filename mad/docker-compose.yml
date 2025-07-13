@@ -6,13 +6,13 @@ services:
       macvlan:
         ipv4_address: 192.168.88.8
     volumes:
-      - /root/mad/mihomo:/root/.config/mihomo/
-      - /etc/localtime:/etc/localtime:ro  # 挂载宿主机时区文件
-      - /etc/timezone:/etc/timezone:ro    # 挂载时区配置
-    environment:
-      - TZ=Asia/Shanghai                  # 显式设置时区
+      - /opt/mad/mihomo:/root/.config/mihomo/
     privileged: true
+    #    devices:
+    #      - /dev/net/tun
     restart: always
+    #    cap_add:
+    #      - NET_ADMIN
     sysctls:
       - net.ipv4.ip_forward=1
 
@@ -23,12 +23,8 @@ services:
       macvlan:
         ipv4_address: 192.168.88.9
     volumes:
-      - /root/mad/adguardhome/conf:/opt/adguardhome/conf
-      - /root/mad/adguardhome/work:/opt/adguardhome/work
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-    environment:
-      - TZ=Asia/Shanghai
+      - /opt/mad/adguardhome/conf:/opt/adguardhome/conf
+      - /opt/mad/adguardhome/work:/opt/adguardhome/work
     privileged: true
     restart: always
 
@@ -39,12 +35,8 @@ services:
       macvlan:
         ipv4_address: 192.168.88.10
     volumes:
-      - /root/mad/mosdns/etc/mosdns:/etc/mosdns
-      - /root/mad/mosdns/var/mosdns:/var/mosdns
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-    environment:
-      - TZ=Asia/Shanghai
+      - /opt/mad/mosdns/etc/mosdns:/etc/mosdns
+      - /opt/mad/mosdns/var/mosdns:/var/mosdns
     privileged: true
     restart: always
 
@@ -52,7 +44,7 @@ networks:
   macvlan:
     driver: macvlan
     driver_opts:
-      parent: eth0
+      parent: enp1s0
       macvlan_mode: bridge
     ipam:
       config:

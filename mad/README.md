@@ -7,13 +7,19 @@ MAD 是一套基于容器技术的 DNS 解决方案，它由 Mihomo、Mosdns 和
 
 
 #### 关键配置步骤
+物理机可以直接部署
+```bash
+# 安装docker
+# docker compose启动
+```
+
 基于pve搭建的容器环境
 ```bash 
 # lxc配置修改
 # 配置路由器dns
 ```
 
-在用的版本：
+在用的版本(其他版本也可以)：
 - adguard/adguardhome:v0.107.57
 - metacubex/mihomo:v1.19.2
 - irinesistiana/mosdns:v5.3.3
