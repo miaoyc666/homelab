@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  heimdall:
+    image: linuxserver/heimdall:latest
+    container_name: heimdall
+    environment:
+      - PUID=1000               # 根据你的用户ID修改
+      - PGID=1000               # 根据你的用户组ID修改
+      - TZ=Asia/Shanghai        # 时区根据需要修改
+    volumes:
+      - ./config:/config        # 配置文件持久化，建议映射到宿主机路径
+    ports:
+      - 80:80                   # 映射到宿主机80端口，修改为其他端口也行
+    restart: unless-stopped
