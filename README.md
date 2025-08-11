@@ -2,9 +2,10 @@
 homelab应用合集
 
 ### What is this?
-- 本项目包含智能家居内的各种服务和配置
+- 本项目包含homelab的各种服务和配置, 主要为docker-compose配置文件和具体业务的yaml配置文件
 - 配置文件版本与程序版本是一一对应关系，不保证其他版本程序也能正确运行
 - 版权所有：miaoyc
+- Readme已经很久没更新了，直接看代码比较好：2025-8-11
 
 ### 版本对应说明
 - mosdns: v2.2.2(native) or v5.1.3(docker)
@@ -45,7 +46,3 @@ homelab应用合集
 
 #### 5.emby
 [emby](emby)
-
-
-
-
