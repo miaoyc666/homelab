@@ -1,12 +1,11 @@
 services:
   elasticsearch:
     image: elasticsearch:8.11.3
-    network_mode: host
-    #    ports:
-    #      - 9200:9200
+    ports:
+      - 9200:9200
     environment:
       - node.name=es01
-      - ELASTIC_PASSWORD=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - bootstrap.memory_lock=false
       - discovery.type=single-node
       - xpack.security.enabled=true
