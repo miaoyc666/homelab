@@ -1,25 +1,27 @@
-version: "3.8"
-
 services:
   mysql:
-    image: mysql:8
-    container_name: mysql
-    restart: always
+    image: mysql:8.0.39
+    env_file: .env
     environment:
-      - MYSQL_ROOT_PASSWORD=gitea
-      - MYSQL_USER=gitea
-      - MYSQL_PASSWORD=gitea
-      - MYSQL_DATABASE=gitea
-    volumes:
-      - mysql_data:/var/lib/mysql
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    command:
+      --max_connections=1000
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-authentication-plugin=mysql_native_password
+      --tls_version="TLSv1.2,TLSv1.3"
+      --binlog_expire_logs_seconds=604800
     ports:
-      - "3306:3306"
+      - ${MYSQL_PORT}:3306
+    volumes:
+      - mysql_data:/data/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-uroot", "-p${MYSQL_PASSWORD}" ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+    restart: on-failure
 
 volumes:
   mysql_data:
-    name: mysql_data
     driver: local
-    driver_opts:
-      type: none
-      device: /data/mysql8
-      o: bind
