@@ -19,9 +19,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     network_mode: host
-    ports:
-      - "4000:3000"
-      - "2000:22"
+#    ports:
+#      - "4000:3000"
+#      - "2000:22"
 
 volumes:
   gitea_data:
