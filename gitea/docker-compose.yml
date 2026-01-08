@@ -2,14 +2,30 @@ version: "3.8"
 
 services:
   server:
-    image: gitea/gitea:1.19.3
+    image: gitea/gitea:1.24.6
     environment:
       - USER_UID=${USER_UID}
       - USER_GID=${USER_GID}
-      - SSH_PORT=2000
-      - DISABLE_SSH=true
+
+      # --- 权限与隐私设置 ---
+      # 只有登录用户才能访问页面
+      - GITEA__service__REQUIRE_SIGNIN_VIEW=true
+      # 设置新建仓库时默认选中“私有” (默认值是 last，即记住上一次的选择)
+      - GITEA__repository__DEFAULT_PRIVATE=private
+      # 强制所有新建仓库必须为私有
+      - GITEA__repository__FORCE_PRIVATE=true
+
+      # --- 网页配置 ---
+      - GITEA__server__ROOT_URL=http://xx.xx.com:3000/
+
+      # --- SSH 配置 ---
+      - DISABLE_SSH=false
+      - SSH_PORT=2222
+      - SSH_LISTEN_PORT=22
+
+      # --- 数据库配置 ---
       - DB_TYPE=mysql
-      - DB_HOST=127.0.0.1:3306
+      - DB_HOST=x.x.x.x:3306
       - DB_NAME=gitea
       - DB_USER=gitea
       - DB_PASSWD=gitea
@@ -18,7 +34,9 @@ services:
       - gitea_data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-    network_mode: host
+    ports:
+      - "3000:3000"
+      - "2222:22"
 
 volumes:
   gitea_data:
