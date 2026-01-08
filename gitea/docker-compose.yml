@@ -9,7 +9,7 @@ services:
       - SSH_PORT=2000
       - DISABLE_SSH=true
       - DB_TYPE=mysql
-      - DB_HOST=192.168.88.11:3306
+      - DB_HOST=127.0.0.1:3306
       - DB_NAME=gitea
       - DB_USER=gitea
       - DB_PASSWD=gitea
@@ -19,9 +19,6 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     network_mode: host
-#    ports:
-#      - "4000:3000"
-#      - "2000:22"
 
 volumes:
   gitea_data:
