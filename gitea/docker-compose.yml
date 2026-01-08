@@ -15,8 +15,14 @@ services:
       # 强制所有新建仓库必须为私有
       - GITEA__repository__FORCE_PRIVATE=true
 
-      # --- 网页配置 ---
-      - GITEA__server__ROOT_URL=http://xx.xx.com:3000/
+      # --- HTTPS 核心配置 ---
+      # 1. 开启 HTTPS 协议
+      - GITEA__server__PROTOCOL=https
+      # 2. --- 网页配置 ---
+      - GITEA__server__ROOT_URL=https://x.x.x:3000/
+      # 3. 指定容器内的证书路径 (文件名必须和你上传的一致)
+      - GITEA__server__CERT_FILE=/data/certs/x.pem
+      - GITEA__server__KEY_FILE=/data/certs/x.key
 
       # --- SSH 配置 ---
       - DISABLE_SSH=false
@@ -34,6 +40,10 @@ services:
       - gitea_data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
+
+      # --- 挂载证书目录 ---
+      # 宿主机路径 (请确保文件在这里) : 容器内路径
+      - /data/gitea/certs:/data/certs:ro
     ports:
       - "3000:3000"
       - "2222:22"
