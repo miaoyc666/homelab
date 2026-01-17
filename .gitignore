@@ -2,3 +2,5 @@
 clash/config.miaoyc.yaml
 v2ray/config.miaoyc.json
 .DS_Store
+.github/
+.vscode/

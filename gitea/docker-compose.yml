@@ -8,6 +8,8 @@ services:
       - USER_GID=${USER_GID}
 
       # --- 权限与隐私设置 ---
+      # 关闭注册功能
+      - GITEA__service__DISABLE_REGISTRATION=true
       # 只有登录用户才能访问页面
       - GITEA__service__REQUIRE_SIGNIN_VIEW=true
       # 设置新建仓库时默认选中“私有” (默认值是 last，即记住上一次的选择)
