@@ -6,6 +6,7 @@
 qm list
 pct list
 qm unlock <VM_ID>
+qm stop <VM_ID>
 ```
 
 
