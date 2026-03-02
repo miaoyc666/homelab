@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  gost-proxy:
+    image: ginuerzh/gost
+    container_name: http-proxy
+    restart: always
+    ports:
+      - "3128:8080"
+    command: ["-L=:8080"]
