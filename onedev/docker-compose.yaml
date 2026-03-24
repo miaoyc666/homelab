@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  onedev:
+    image: 1dev/server:latest
+    container_name: onedev
+    restart: always
+    ports:
+      # Git SSH 防扫描高位端口映射
+      - "16611:6611"
+    volumes:
+      # 核心数据持久化
+      - onedev-data:/opt/onedev
+      # 挂载宿主机 Docker 进程，赋予 OneDev 原生 CI/CD 构建能力
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - onedev-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: onedev-nginx
+    restart: always
+    ports:
+      # Web HTTPS 非标端口映射
+      - "13443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - onedev
+    networks:
+      - onedev-network
+
+volumes:
+  onedev-data:
+
+networks:
+  onedev-network:
+    name: onedev-network
+    driver: bridge
