@@ -10,7 +10,7 @@ services:
       - "16611:6611"
     volumes:
       # 核心数据持久化
-      - onedev-data:/opt/onedev
+      - ./onedev-data:/opt/onedev
       # 挂载宿主机 Docker 进程，赋予 OneDev 原生 CI/CD 构建能力
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
@@ -34,9 +34,6 @@ services:
       - onedev
     networks:
       - onedev-network
-
-volumes:
-  onedev-data:
 
 networks:
   onedev-network:
