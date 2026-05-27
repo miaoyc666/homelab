@@ -5,8 +5,6 @@ services:
     restart: always
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun
     ports:
       - "7890:7890"
       - "9090:9090"

@@ -15,10 +15,7 @@ geox-url:
   geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
   mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
 tun:
-  enable: true
-  stack: system
-  auto-route: true
-  auto-detect-interface: true
+  enable: false
 dns:
   enable: true
   listen: 0.0.0.0:53
