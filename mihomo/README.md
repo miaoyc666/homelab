@@ -24,7 +24,25 @@ docker compose down
 
 ## 管理面板
 
-启动后访问 `http://<host>:9090/ui`，密码为 config.yaml 中的 `secret` 字段值。
+### 方式一：本地 UI（推荐）
+
+下载 Web UI 静态文件到 `ui/` 目录：
+
+```bash
+# metacubexd（推荐）
+wget -O ui.zip https://github.com/MetaCubeX/metacubexd/releases/latest/download/compressed-dist.zip
+unzip ui.zip -d ui
+
+# 或者 Yacd-meta
+wget -O ui.zip https://github.com/MetaCubeX/Yacd-meta/releases/latest/download/Yacd-meta.zip
+unzip ui.zip -d ui
+```
+
+重启容器后访问 `http://<host>:9090/ui`，密码为 config.yaml 中的 `secret` 字段值。
+
+### 方式二：在线 UI
+
+无需下载任何文件，直接访问 `https://metacubex.github.io/metacubexd`，填入 API 地址 `http://<host>:9090` 和密码即可连接管理。
 
 ## 客户端使用
 

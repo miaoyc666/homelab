@@ -9,5 +9,4 @@ services:
       - "7890:7890"
       - "9090:9090"
     volumes:
-      - ./config.yaml:/root/.config/mihomo/config.yaml
-      - ./ui:/root/.config/mihomo/ui
+      - ./:/root/.config/mihomo/
